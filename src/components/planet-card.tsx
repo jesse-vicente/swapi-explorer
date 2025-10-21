@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import type { ProcessedPlanet } from "@/types/swapi";
+import { formatPlanetData } from "@/utils/formatters";
 
 interface PlanetCardProps {
   planet: ProcessedPlanet;
@@ -18,37 +19,36 @@ interface PlanetCardProps {
 export function PlanetCard({ planet }: PlanetCardProps) {
   const navigate = useNavigate();
 
-  const formatNumber = (value: string) => {
-    if (value === "unknown" || value === "n/a") return "Desconhecido";
-    if (!isNaN(Number(value))) {
-      return Number(value).toLocaleString("pt-BR");
-    }
-    return value;
-  };
-
   const handleViewDetails = () => {
     navigate(`/planet/${planet.id}`);
   };
+
+  const {
+    translatedTerrain,
+    translatedClimate,
+    formattedDiameter,
+    formattedPopulation,
+  } = formatPlanetData(planet);
 
   return (
     <Card className="w-full hover:bg-accent/50 transition-colors">
       <CardHeader>
         <CardTitle className="text-lg">{planet.name}</CardTitle>
         <CardDescription className="text-sm text-muted-foreground">
-          {planet.terrain} • {planet.climate}
+          {translatedTerrain} • {translatedClimate}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
           <div>
             <span className="font-medium text-muted-foreground">Diâmetro:</span>
-            <p className="mt-1">{formatNumber(planet.diameter)} km</p>
+            <p className="mt-1">{formattedDiameter}</p>
           </div>
           <div>
             <span className="font-medium text-muted-foreground">
               População:
             </span>
-            <p className="mt-1">{formatNumber(planet.population)}</p>
+            <p className="mt-1">{formattedPopulation}</p>
           </div>
         </div>
 
@@ -61,7 +61,7 @@ export function PlanetCard({ planet }: PlanetCardProps) {
                   key={film.episodeId}
                   className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground"
                 >
-                  Episódio {film.episodeId} - {film.title}
+                  Ep. {film.episodeId}: {film.title}
                 </span>
               ))}
             </div>

@@ -11,6 +11,7 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { ResidentCard } from "@/components/resident-card";
 import { usePlanetDetails } from "@/hooks/use-planet-details";
+import { formatPlanetData } from "@/utils/formatters";
 
 export function PlanetDetailsPage() {
   const { id } = useParams<{ id: string }>();
@@ -22,14 +23,6 @@ export function PlanetDetailsPage() {
     error,
     isError,
   } = usePlanetDetails(id || "");
-
-  const formatNumber = (value: string) => {
-    if (value === "unknown" || value === "n/a") return "Desconhecido";
-    if (!isNaN(Number(value))) {
-      return Number(value).toLocaleString("pt-BR");
-    }
-    return value;
-  };
 
   const handleBack = () => {
     navigate("/");
@@ -110,6 +103,15 @@ export function PlanetDetailsPage() {
     return null;
   }
 
+  const {
+    translatedTerrain,
+    translatedClimate,
+    formattedDiameter,
+    formattedPopulation,
+    formattedRotationPeriod,
+    formattedOrbitalPeriod,
+  } = formatPlanetData(planet);
+
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -128,7 +130,7 @@ export function PlanetDetailsPage() {
                 </CardTitle>
               </div>
               <CardDescription className="text-base">
-                {planet.terrain} • {planet.climate}
+                {translatedTerrain} • {translatedClimate}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -138,8 +140,7 @@ export function PlanetDetailsPage() {
                     Período de Rotação:
                   </span>
                   <p className="text-lg font-semibold">
-                    {formatNumber(planet.rotationPeriod)}{" "}
-                    {planet.rotationPeriod !== "Desconhecido" ? "horas" : ""}
+                    {formattedRotationPeriod}
                   </p>
                 </div>
 
@@ -148,8 +149,7 @@ export function PlanetDetailsPage() {
                     Período de Orbitação:
                   </span>
                   <p className="text-lg font-semibold">
-                    {formatNumber(planet.orbitalPeriod)}{" "}
-                    {planet.orbitalPeriod !== "Desconhecido" ? "dias" : ""}
+                    {formattedOrbitalPeriod}
                   </p>
                 </div>
 
@@ -157,17 +157,14 @@ export function PlanetDetailsPage() {
                   <span className="font-medium text-muted-foreground">
                     Diâmetro:
                   </span>
-                  <p className="text-lg font-semibold">
-                    {formatNumber(planet.diameter)}{" "}
-                    {planet.diameter !== "Desconhecido" ? "km" : ""}
-                  </p>
+                  <p className="text-lg font-semibold">{formattedDiameter}</p>
                 </div>
 
                 <div className="space-y-2">
                   <span className="font-medium text-muted-foreground">
                     Clima:
                   </span>
-                  <p className="text-lg font-semibold">{planet.climate}</p>
+                  <p className="text-lg font-semibold">{translatedClimate}</p>
                 </div>
 
                 <div className="space-y-2">
@@ -181,16 +178,14 @@ export function PlanetDetailsPage() {
                   <span className="font-medium text-muted-foreground">
                     Terreno:
                   </span>
-                  <p className="text-lg font-semibold">{planet.terrain}</p>
+                  <p className="text-lg font-semibold">{translatedTerrain}</p>
                 </div>
 
                 <div className="space-y-2">
                   <span className="font-medium text-muted-foreground">
                     População:
                   </span>
-                  <p className="text-lg font-semibold">
-                    {formatNumber(planet.population)}
-                  </p>
+                  <p className="text-lg font-semibold">{formattedPopulation}</p>
                 </div>
               </div>
 
@@ -205,7 +200,7 @@ export function PlanetDetailsPage() {
                         key={film.episodeId}
                         className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary border border-primary/20"
                       >
-                        Episódio {film.episodeId}: {film.title}
+                        Ep. {film.episodeId}: {film.title}
                       </span>
                     ))}
                   </div>
