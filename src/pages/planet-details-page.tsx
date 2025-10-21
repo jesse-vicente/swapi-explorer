@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ResidentCard } from "@/components/resident-card";
 import { usePlanetDetails } from "@/hooks/use-planet-details";
@@ -196,12 +197,12 @@ export function PlanetDetailsPage() {
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {planet.films.map((film) => (
-                      <span
+                      <Badge
                         key={film.episodeId}
-                        className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary border border-primary/20"
+                        className="bg-primary/10 text-primary border border-primary/20 rounded-full px-3 py-1 text-sm font-medium"
                       >
                         Ep. {film.episodeId}: {film.title}
-                      </span>
+                      </Badge>
                     ))}
                   </div>
                 </div>

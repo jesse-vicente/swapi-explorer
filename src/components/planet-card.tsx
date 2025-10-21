@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { ProcessedPlanet } from "@/types/swapi";
 import { formatPlanetData } from "@/utils/formatters";
@@ -57,12 +58,9 @@ export function PlanetCard({ planet }: PlanetCardProps) {
             <span className="font-medium text-muted-foreground">Filmes:</span>
             <div className="mt-2 flex flex-wrap gap-1">
               {planet.films.map((film) => (
-                <span
-                  key={film.episodeId}
-                  className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground"
-                >
+                <Badge key={film.episodeId} variant="secondary">
                   Ep. {film.episodeId}: {film.title}
-                </span>
+                </Badge>
               ))}
             </div>
           </div>
