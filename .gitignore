@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# TypeScript build cache
+*.tsbuildinfo
+
+# Cypress
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/

@@ -17,12 +17,7 @@ export function PlanetDetailsPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  const {
-    data: planet,
-    isLoading,
-    error,
-    isError,
-  } = usePlanetDetails(id || "");
+  const { data: planet, isLoading, isError } = usePlanetDetails(id || "");
 
   const handleBack = () => {
     navigate("/");
@@ -44,8 +39,7 @@ export function PlanetDetailsPage() {
                 Erro ao carregar planeta
               </h3>
               <p className="text-muted-foreground max-w-md">
-                {error?.message ||
-                  "Ocorreu um erro inesperado. Tente novamente mais tarde."}
+                Ocorreu um erro inesperado. Tente novamente mais tarde.
               </p>
               <Button onClick={handleBack} variant="outline">
                 Voltar para a lista

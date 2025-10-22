@@ -31,7 +31,7 @@ export function PlanetCard({ planet }: PlanetCardProps) {
   } = formatPlanetData(planet);
 
   return (
-    <Card className="w-full hover:bg-accent/50 transition-colors">
+    <Card className="w-full hover:bg-accent/50 transition-colors" data-testid="planet-card">
       <CardHeader>
         <CardTitle className="text-lg">{planet.name}</CardTitle>
         <CardDescription className="text-sm text-muted-foreground">
