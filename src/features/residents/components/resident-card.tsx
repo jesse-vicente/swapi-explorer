@@ -19,7 +19,7 @@ export function ResidentCard({ resident }: ResidentCardProps) {
   const translatedGender = translate(resident.gender);
 
   return (
-    <Card className="w-full">
+    <Card className="w-full" data-testid="resident-card">
       <CardHeader className="pb-4">
         <div className="flex items-center space-x-2">
           <User className="h-5 w-5 text-muted-foreground" />

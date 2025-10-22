@@ -25,9 +25,11 @@ export const formatPopulation = (value?: string | number | null): string => {
   for (const { limit, singular, plural } of NUMBER_UNITS) {
     if (num >= limit) {
       const scaled = num / limit;
+      // Avoid rounding up near boundaries (e.g., 1.95 -> 2). Use floor to one decimal under 2.
+      const display = scaled < 2 ? Math.floor(scaled * 10) / 10 : scaled;
       const formatted = Intl.NumberFormat("pt-BR", {
-        maximumFractionDigits: scaled % 1 < 0.01 ? 0 : 1,
-      }).format(scaled);
+        maximumFractionDigits: display % 1 === 0 ? 0 : 1,
+      }).format(display);
       return `${formatted} ${scaled >= 2 ? plural : singular}`;
     }
   }

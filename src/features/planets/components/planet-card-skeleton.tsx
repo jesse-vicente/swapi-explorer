@@ -3,7 +3,7 @@ import { Skeleton } from "@/shared/components/ui/skeleton";
 
 export function PlanetCardSkeleton() {
   return (
-    <Card className="w-full">
+    <Card className="w-full" data-testid="planet-card-skeleton">
       <CardHeader>
         <Skeleton className="h-6 w-3/4" />
         <Skeleton className="h-4 w-1/2" />
