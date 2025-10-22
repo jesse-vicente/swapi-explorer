@@ -1,14 +1,15 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, AlertCircle, Globe, Users } from "lucide-react";
-import { Badge, Button } from "@/shared/components/ui";
 import {
+  Badge,
+  Button,
+  Skeleton,
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/shared/components/ui/card";
-import { Skeleton } from "@/shared/components/ui/skeleton";
+} from "@/shared/components/ui";
 import { ResidentCard } from "@/features/residents/components/resident-card";
 import { usePlanetDetails } from "../hooks/use-planet-details";
 import { formatPlanetData } from "../utils";
