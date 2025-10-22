@@ -25,3 +25,8 @@ dist-ssr
 
 # TypeScript build cache
 *.tsbuildinfo
+
+# Cypress
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
