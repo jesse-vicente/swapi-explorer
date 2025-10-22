@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/shared/components/ui/card";
-import { Button } from "@/shared/components/ui/button";
+import { Badge, Button } from "@/shared/components/ui";
 import type { PlanetDTO } from "../types/planet.types";
 import { formatPlanetData } from "../utils";
 
@@ -31,7 +31,10 @@ export function PlanetCard({ planet }: PlanetCardProps) {
   } = formatPlanetData(planet);
 
   return (
-    <Card className="w-full hover:bg-accent/50 transition-colors" data-testid="planet-card">
+    <Card
+      className="w-full hover:bg-accent/50 transition-colors"
+      data-testid="planet-card"
+    >
       <CardHeader>
         <CardTitle className="text-lg">{planet.name}</CardTitle>
         <CardDescription className="text-sm text-muted-foreground">
@@ -57,12 +60,9 @@ export function PlanetCard({ planet }: PlanetCardProps) {
             <span className="font-medium text-muted-foreground">Filmes:</span>
             <div className="mt-2 flex flex-wrap gap-1">
               {planet.films.map((film) => (
-                <span
-                  key={film.episode_id}
-                  className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground"
-                >
+                <Badge key={film.episode_id} variant="secondary">
                   Ep. {film.episode_id}: {film.title}
-                </span>
+                </Badge>
               ))}
             </div>
           </div>

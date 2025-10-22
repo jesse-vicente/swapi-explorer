@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Search, AlertCircle } from "lucide-react";
-import { Input } from "@/shared/components/ui/input";
-import { Button } from "@/shared/components/ui/button";
+import { Button, Input } from "@/shared/components/ui";
 import { PlanetCard } from "../components/planet-card";
 import { PlanetCardSkeleton } from "../components/planet-card-skeleton";
 import { PlanetsPagination } from "../components/planets-pagination";

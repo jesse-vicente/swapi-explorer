@@ -1,14 +1,15 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, AlertCircle, Globe, Users } from "lucide-react";
-import { Button } from "@/shared/components/ui/button";
 import {
+  Badge,
+  Button,
+  Skeleton,
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/shared/components/ui/card";
-import { Skeleton } from "@/shared/components/ui/skeleton";
+} from "@/shared/components/ui";
 import { ResidentCard } from "@/features/residents/components/resident-card";
 import { usePlanetDetails } from "../hooks/use-planet-details";
 import { formatPlanetData } from "../utils";
@@ -190,12 +191,12 @@ export function PlanetDetailsPage() {
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {planet.films.map((film) => (
-                      <span
+                      <Badge
                         key={film.episode_id}
-                        className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary border border-primary/20"
+                        className="bg-primary/10 text-primary border border-primary/20 rounded-full px-3 py-1 text-sm font-medium"
                       >
                         Ep. {film.episode_id}: {film.title}
-                      </span>
+                      </Badge>
                     ))}
                   </div>
                 </div>
